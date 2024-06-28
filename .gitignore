@@ -1,0 +1,29 @@
+# Ignore directories
+.idea/
+.venv/
+.mypy_cache/
+venv/
+
+literature/
+**/__pycache__/
+experimentation/results/
+experimentation/plots/
+experimentation/trained_models/
+experimentation/eda_milestone/
+**/.ipynb_checkpoints/
+outputs/
+wandb/
+
+# Ignore filetypes
+**.png
+**.onnx
+**.docx
+**.ini
+**.pt
+**.csv
+**.drawio
+**.dtmp
+**.xlsx
+
+# Ignore testing files
+_testing.ipynb
