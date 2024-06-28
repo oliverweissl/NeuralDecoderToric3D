@@ -1,5 +1,5 @@
 ## Neural Decoder for 3D Toric Codes
-![4D Torus](experimentation/torus.gif)
+![4D Torus](torus.gif)
 
 This repository contains code for experiments using a Neural Decoder that works on 3D Toric codes.
 
@@ -9,10 +9,8 @@ This repository contains code for experiments using a Neural Decoder that works 
   - `pooling_layers` contains adaptations of the GlobalAveragePooling layer.
   - `residual_block` contains different types of residual block implementations.
   
-- `experimentation` is a directory containing experiment, testing and analysis related code.
 - `src` is a collection of classes and functions used in the experimentation.
 
   - `data_analysis` is a collection of functions for data analysis.
   - `evaluation_metrics` collects various evaluation methods for the decoding.
-
 
