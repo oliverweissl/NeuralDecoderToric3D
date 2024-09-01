@@ -10,16 +10,26 @@ from hydra.utils import instantiate
 from models import Decoder, MViT
 from models.loss_functions import DynamicCELoss
 from src import Trainer
+from panqec.codes import StabilizerCode
 
 
 @hydra.main(config_path="config", config_name="3d", version_base="1.2")
 def main(args) -> None:
-    """Init some values."""
-    os.environ["WANDB_API_KEY"] = args.default.wandb_api
+    """
+    Start the experiments for decoder training.
+
+    Note that we use hydra for experimental setup and configs, however, it is not required to run the experiments.
+    Simply remove the hydra part and set the arguments in the file or use another parser method.
+    All arguments needed start with 'args.'.
+
+    :param args: The parsed hydra arguments.
+    """
+    """Init variables for later use."""
+    os.environ["WANDB_API_KEY"]: str = args.default.wandb_api  # parse wandb API key for logging. 
     device = torch.device("cuda:0")
 
-    L = args.default.L
-    p = args.default.p
+    L: int = args.default.L  # parse lattice size (code is symmetric and as such follows L x L x ..).
+    p: float = args.default.p  # parse the error rate [0,1).
     logging.info(f"Lattice size: {L}, Error rate: {p}")
 
     """Start Wandb experiment."""
@@ -28,15 +38,15 @@ def main(args) -> None:
     wandb.config.update(wandb_args)
 
     """Initialize the stabilizer Code."""
-    code = instantiate(args.default.code, L)
+    code: StabilizerCode = instantiate(args.default.code, L)  # Instantiate the error correcting code using panqec.
 
     """Make Decoder Model."""
-    pooling = instantiate(args.default.pooling, L)
-    network = instantiate(args.default.network, **args.net, lattice_size=L)
+    pooling: nn.Module = instantiate(args.default.pooling, L)  # Instantiate the pooling approach. Pooling layers can be found in 'models/pooling_layers'.
+    network: nn.Module = instantiate(args.default.network, **args.net, lattice_size=L)  # Instantiate the network decoder. Decoders can be found in 'models'.
     ensemble = MViT(
         lattice_size=L,
         patch_size=L,
-    ) if args.default.network.ensemble else None
+    ) if args.default.network.ensemble else None  # Boolean value determines if the ensemble method is used for decoding.
 
     decoder = Decoder(network=network, pooling=pooling, ensemble=ensemble)
     decoder.to(device)
@@ -48,8 +58,8 @@ def main(args) -> None:
     schedulers.append(torch.optim.lr_scheduler.OneCycleLR(
         optimizer=opt,
         max_lr=0.01,
-        epochs=args.default.epochs,
-        steps_per_epoch=args.default.batches
+        epochs=args.default.epochs,  # Define the amount of epochs to train (int).
+        steps_per_epoch=args.default.batches  # Define the amount of batches per epoch (int).
     ))
 
     if args.default.network.ensemble:
@@ -72,7 +82,7 @@ def main(args) -> None:
         optimizers=optimizers,
         schedulers=schedulers,
         args=args,
-        save_model=args.save_model
+        save_model=args.save_model  # Define whether the model should be saved after training.
     )
     """Start training."""
     trainer.train(
