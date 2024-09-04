@@ -1,0 +1,8 @@
+---
+defaults:
+  - default: neural_decoder_3d
+  - net: null
+  - _self_
+
+description: 3D QEC - ProteanEnd
+batch_size: 512

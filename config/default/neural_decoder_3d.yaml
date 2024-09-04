@@ -1,0 +1,19 @@
+batches: 128
+epochs: 100
+test_size: 512
+L: 5
+p: 0.04
+
+network:
+  ensemble: False
+  _target_: models.TransformedEND
+
+pooling:
+  _target_: models.pooling_layers.TranslationalEquivariantPooling3D
+
+code:
+  _target_: panqec.codes.Toric3DCode
+
+wandb_api: <insert API key>
+project_name: <insert project name>
+entity: <insert entity>

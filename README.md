@@ -2,6 +2,7 @@
 ![4D Torus](torus.gif)
 
 This repository contains code for experiments using a Neural Decoder that works on 3D Toric codes.
+The corresponding paper to this codebase will soon be available and alink update here.
 
 - `models` contains various decoder models and sub-packages with additional components.
 
@@ -14,3 +15,7 @@ This repository contains code for experiments using a Neural Decoder that works 
   - `data_analysis` is a collection of functions for data analysis.
   - `evaluation_metrics` collects various evaluation methods for the decoding.
 
+- `config` contains the configuration files used for experiments.
+
+  - `default` contains default parameters for the experiments and API details to W&B.
+  - `net` contains the specific parameters for the network architecture.
