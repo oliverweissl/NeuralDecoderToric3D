@@ -1,8 +1,8 @@
 batches: 128
 epochs: 100
 test_size: 512
-p: 0.17
 L: 17
+p: 0.17
 
 network:
   _target_: models.TheEND
