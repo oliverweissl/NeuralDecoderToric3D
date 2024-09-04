@@ -1,0 +1,8 @@
+---
+defaults:
+  - default: neural_decoder_2d
+  - net: null
+  - _self_
+
+description: 2D QEC - TheEND
+batch_size: 512
