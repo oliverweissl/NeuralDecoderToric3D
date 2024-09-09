@@ -2,7 +2,7 @@
 ![4D Torus](torus.gif)
 
 This repository contains code for experiments using a Neural Decoder that works on 3D Toric codes.
-The corresponding paper to this codebase will soon be available and alink update here.
+The corresponding paper can be found at: http://arxiv.org/abs/2409.04300 .
 
 - `models` contains various decoder models and sub-packages with additional components.
 
