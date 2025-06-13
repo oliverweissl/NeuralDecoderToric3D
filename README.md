@@ -1,9 +1,10 @@
-## Neural Decoder for 3D Toric Codes
-![4D Torus](torus.gif)
+<img align="right" width="150" height="150" src="torus.gif" alt="torus"/>
 
-This repository contains code for experiments using a Neural Decoder that works on 3D Toric codes.
-The corresponding paper can be found at: http://arxiv.org/abs/2409.04300 .
+## An Equivariant Machine Learning Decoder for 3D Toric Codes
+This repository provides code for experiments using a Neural Decoder that works on 3D Toric codes.<br>
+The corresponding paper was published at: [QCNC 2025](https://ieeexplore.ieee.org/abstract/document/11000145).
 
+#### Repository Structure
 - `models` contains various decoder models and sub-packages with additional components.
 
   - `auxiliar_components` contains various components used in the NNs or decoding procedure.
